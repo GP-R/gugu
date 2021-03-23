@@ -3,7 +3,7 @@
 
 int main()
 {
-	Game a;
+	Gugudan game;
 	srand((unsigned)time(NULL));
 
 	int nPlay = 10;
@@ -14,7 +14,7 @@ int main()
 	getchar();
 	system("cls");
 
-	double score = a.playSpeedGugu(a, nPlay);
-	printf("\n점수 = %4.1f점(총 %4.1f초)\n", score, tElapsed);
+	double score = game.play(game, nPlay);
+	printf("\n점수 = %4.1f점(총 %4.1f초)\n", score, game.tElapsed);
 	return 0;
 }
