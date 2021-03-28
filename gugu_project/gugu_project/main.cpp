@@ -14,7 +14,7 @@ int main()
 	getchar();
 	system("cls");
 
-	double score = game.play(game, nPlay);
-	printf("\n점수 = %4.1f점(총 %4.1f초)\n", score, game.tElapsed);
+	double score = game.play(nPlay);
+	printf("\n점수 = %4.1f점(총 %4.1f초)\n", score, game.getTimeElapsed());
 	return 0;
 }

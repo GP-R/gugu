@@ -1,25 +1,28 @@
 #include "speedgugu.h"
 
-bool Gugudan::playOnce(Gugudan game)
-{
-	game.num1 = rand() % 8 + 2;
-	game.num2 = rand() % 8 + 2;
+int Gugudan::NumGames = 0;
+int Gugudan::NumWins = 0;
 
-	game.NumGames++;
-	printf("[문제%2d]: %2d x %2d = ", game.NumGames, game.num1, game.num2);
-	scanf_s("%d", &game.result);
-	if (game.result == game.num1 * game.num2) game.NumWins++;
-	return (game.result == game.num1 * game.num2);
+bool Gugudan::playOnce()
+{
+	int num1 = rand() % 8 + 2;
+	int num2 = rand() % 8 + 2;
+	int result = 0;
+	Gugudan::NumGames++;
+	printf("[문제%2d]: %2d x %2d = ", Gugudan::NumGames, num1, num2);
+	scanf_s("%d", &result);
+	if (result == num1 * num2) Gugudan::NumWins++;
+	return (result == num1 * num2);
 }
 
-double Gugudan::play(Gugudan game, int nPlay) {
+double Gugudan::play(int nPlay) {
 	clock_t t0 = clock();
 	for (int i = 0; i < nPlay; i++) {
-		if (playOnce(game) == false)
+		if (playOnce() == false)
 			printf("\t틀렸습니다.\n");
 	}
 	clock_t t1 = clock();
 	tElapsed = (double)(t1 - t0) / CLOCKS_PER_SEC;
-	Score = (game.NumGames > game.NumWins) ? 0.0 : 100 * (5.0*game.NumGames - tElapsed) / (5.0*game.NumGames);
+	Score = (Gugudan::NumGames > Gugudan::NumWins) ? 0.0 : 100 * (5.0*Gugudan::NumGames - tElapsed) / (5.0*Gugudan::NumGames);
 	return Score;
 }
